@@ -1,0 +1,30 @@
+#include <iostream>
+#include <conio.h>
+#include <math.h>
+using namespace std;
+
+
+int CantidadDigitos(int n)
+{ int c=0;
+  while(n>0)
+  {n=n/10;
+  c++;
+  }
+  return(c);
+}
+
+
+int Concatenar(int a,int b)
+{return(a*powf(10,CantidadDigitos(b))+b);
+
+}
+
+void main()
+{ int nro,dig;
+cout<<"Introducir un numero natural: ";
+cin>>nro;
+cout<<"Introducir un numero natural de un solo digito: ";
+cin>>dig;
+cout<<"El numero concatenado es: "<<Concatenar(nro, dig);
+getch();
+}
