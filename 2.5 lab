@@ -1,0 +1,33 @@
+#include <iostream>
+#include <conio.h>
+#include <math.h>
+using namespace std;
+
+
+int NumerosIntercalados(int a, int b)
+{ int i=0,k,s=0;
+ while(b>0 && a>0)
+ {
+	 k=b%10;
+	 b=b/10;
+	 s=s+k*powf(10,i);
+	 i++;
+	 k=a%10;
+	 a=a/10;
+	 s=s+k*powf(10,i);
+	 i++;
+ }
+ return(s);
+}
+
+
+
+void main()
+{ int nro,dig;
+cout<<"Introducir un numero natural: ";
+cin>>nro;
+cout<<"Introducir otro numero natural: ";
+cin>>dig;
+cout<<"Los numeros intercalados son igual a: "<<NumerosIntercalados(nro, dig);
+getch();
+}
