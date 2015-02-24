@@ -2,7 +2,7 @@
 #include <conio.h>
 using namespace std;
 
-int repetirDigitoEliminadoeliminarDigito(int n,int dig)
+int MostrarCuantosDigitosEliminadoseliminarDigito(int n,int dig)
 { int d,newnro=0;
 while(n>0)
   {d=n%10;
@@ -19,7 +19,7 @@ cout<<"Introducir un numero natural: ";
 cin>>nro;
 cout<<"Introducir un numero natural de un solo digito: ";
 cin>>dig;
-cout<<"El numero sin el digito es: "<<repetirDigitoEliminadoeliminarDigito(nro, dig);
+cout<<"El numero sin el digito es: "<<MostrarCuantosDigitosEliminadoseliminarDigito(nro, dig);
 getch();
 }
 
