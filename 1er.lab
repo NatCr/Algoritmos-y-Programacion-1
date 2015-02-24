@@ -1,0 +1,115 @@
+// algorit 1er lab.cpp : main project file.
+#include "stdafx.h"
+#include <iostream>
+#include <conio.h>
+#include "stdlib.h"
+using namespace std;
+
+//FUNCIONES:
+
+int sumar(int x, int y){
+	int r;
+	r = x + y;
+	return(r);
+}
+
+int multiplicar(int x, int y){
+	int r = 0, i;
+	for (i = 1; i <= y; i++){
+		r = r + x;
+	}
+	return(r);
+}
+
+int division(int x, int y){
+	int r = 0;
+	while (x>0){
+		x = x - y;
+		r++;
+	}
+	return(r);
+}
+
+int factorial(int x){
+	int r = 1, i;
+	for (i = 1; i <= x; i++){
+		r = r*i;
+	}
+	return(r);
+}
+
+
+void main(){
+	int x, y, r, opcion;
+	do{
+		cout << "\t MENU \n\n";
+		cout << "1. Suma.\n";
+		cout << "2. Multiplicacion.\n";
+		cout << "3. Division.\n";
+		cout << "4. Factorial.\n";
+		cout << "5. Salir.\n";
+		cout << "Escoja una opcion:  ";
+		cin >> opcion;
+		switch (opcion)
+		{
+		case 1: do{
+					cout << "\n\n Introducir un numero : ";
+					cin >> x;
+		} while (x <= 0);
+			do{
+				cout << "Introducir otro numero : ";
+				cin >> y;
+			} while (y <= 0);
+			if (x%y != 0){
+				cout << "No es divisible...!!!";
+			}
+			else{
+				r = sumar(x, y);
+				cout << "La suma es -->> : " << r << " de " << x << " + " << y;
+			}
+			_getch();
+			break;
+		case 2:	int x, y, r;
+			cout << "\n\n Introducir un numero : ";
+			cin >> x;
+			cout << "Introducir otro numero : ";
+			cin >> y;
+			r = multiplicar(x, y);
+			cout << "La multiplicacion es: " << r << " de " << x << " * " << y;
+			_getch();
+			break;
+		case 3: do{
+					cout << "\n\n Introducir un numero : ";
+					cin >> x;
+		} while (x <= 0);
+			do{
+				cout << "Introducir otro numero : ";
+				cin >> y;
+			} while (y <= 0);
+			if (x%y != 0){
+				cout << "No es divisible...!!!";
+			}
+			else{
+				cout << "La division es igual a: " << r << " de " << x << "/" << y;
+			}
+			_getch();
+			break;
+		case 4: do{
+					cout << "\n\n Introducir un numero : ";
+					cin >> x;
+		} while (x <= 0);
+			r = factorial(x);
+			cout << "El factorial de " << x << " es igual a: " << r;
+			_getch();
+			break;
+		case 5: cout << "\n\n Salir\n";
+			_getch();
+			break;
+		default: cout << "\n\n ERROR\n";
+			_getch();
+		}
+		system("cls");
+	} while (opcion != 5);
+	_getch();
+}
+
