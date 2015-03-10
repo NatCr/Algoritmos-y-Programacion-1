@@ -1,0 +1,80 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+
+void cargar(int vec[], int n){
+	int i;
+	for(i=0;i<n;i++){
+		cout<<"introducir los elementos: ";
+		cin>>vec[i];
+	}
+}
+
+void mostrar(int vec[],int n){
+	int i;
+	cout<<"\n\nEl vector es --->  :\n";
+	for(i=0;i<n;i++){
+	cout<<vec[i]<<"   ";}
+}
+
+void eliminarElemImpares(int vec[],int &n)
+{int i, k;
+for(i=0;i<n;i++){
+	if(vec[i]%2!=0){
+		for(k=i;k<n-1;k++){
+			vec[k]=vec[k+1];
+		}
+n--;
+i--;
+	}
+}
+}
+
+bool VerifSiElemExiste(int vec[], int n, int elem){
+	int i;
+	bool k=false;
+	for(i=0;i<n;i++){
+		if(vec[i]==elem){
+			k=true;
+		}
+	}
+	return(k);
+}
+
+void interConjuntos(int vA[], int nA, int vB[], int nB, int vC[], int &nC){
+	int i;
+	nC=0;
+	for(i=0;i<nA;i++){
+		if(VerifSiElemExiste(vB,nB,vA[i])==true){
+			vC[nC]=vA[i];
+			nC++;
+		}
+	}
+}
+
+
+void main(){
+	//lo de abajo no para verifsiexiste e interseccion
+	//int vec[25],n;
+	int  vA[10],  nA,  vB[10], nB,  vC[10],  nC;
+	//cout<<"Cuantos elementos para el vector? :";
+	cout<<"Cuantos elementos para el vector A ? :";
+	//cin>>n;
+	cin>>nA;
+	//cargar (vec,n);
+	//mostrar(vec,n);
+	//eliminarElemImpares(vec,n);
+	//eliminarElemImpares(vec,n);
+	//mostrar(vec,n);
+	
+	cargar (vA,nA);
+	cout<<"Cuantos elementos para el vector B ? :";
+	cin>>nB;
+	cargar(vB,nB);
+	interConjuntos(vA,nA,vB,nB,vC,nC);
+	mostrar(vA,nA);
+	mostrar(vB,nB);
+	mostrar(vC,nC);
+	getch();
+}
+
