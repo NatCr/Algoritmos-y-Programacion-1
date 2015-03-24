@@ -1,0 +1,62 @@
+/*ESTRUCTURAS. LABORATORIO 5
+PROGRAMA PARA REGISTRAR Y MOSTRAR NOMBRES Y EDADES DE LOS AMIGOS
+TAMBIEN OBTIENE Y MUESTRA A LOS AMIGOS CON LA EDAD MAYOR*/
+
+#include <iostream>
+#include <conio.h>
+#include <string.h>
+using namespace std;
+struct regAmigo{
+	char nombre[20];
+	int edad;
+};
+
+void cargar(regAmigo vec[], int n){
+	int i;
+	for (i=0;i<n;i++){
+		cout<<endl<<"Datos para Amigo nro: "<<i+1;
+		cout<<"\nNOMBRE:";
+		do{
+			gets(vec[i].nombre);
+		}while(strlen(vec[i].nombre)==0); //valida que el nombre no sea vacio
+		cout<<"EDAD:";
+		cin>>vec[i].edad;
+	}
+}
+
+void mostrar(regAmigo vec[], int n){
+	int i;
+	cout<<"\nLos Amigos son: \n";
+	for (i=0;i<n;i++){
+		cout<<"\n"<<vec[i].nombre<<"  "<<vec[i].edad;
+	}
+}
+
+int obtEdadMay(regAmigo vec[], int n){
+	int i, may=vec[0].edad;
+	for(i=0;i<n;i++){
+		if(vec[i].edad>may){
+			may=vec[i].edad;
+		}
+	}
+	return(may);
+}
+
+void mostrarAmigosMayores(regAmigo vec[],int n){
+	int i, en=obtEdadMay(vec,n);
+	for(i=0;i<n;i++){
+		if(vec[i].edad==en){
+			cout<<endl<<"El amigo mayor es: "<<vec[i].nombre<<" con "<<vec[i].edad<<" anhos.";
+		}
+	}
+}
+
+void main(){
+	int nroAmigo;
+	regAmigo vecAmi[15];
+	cout<<"\nIntroducir la cantidad de amigos: ";
+	cin>>nroAmigo;
+	cargar(vecAmi,nroAmigo);
+	mostrarAmigosMayores(vecAmi,nroAmigo);
+	getch();
+}
