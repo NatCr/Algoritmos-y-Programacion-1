@@ -1,0 +1,95 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+#define MAX 10
+
+struct tElemento{
+	int svec[MAX];
+};
+
+void cargar(tElemento vec[], int n){
+	int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			cout<<"Introducir elemento: ";
+			cin>>vec[i].svec[j];
+		}
+	}
+cout<<endl;
+}
+
+
+void mostrar(tElemento vec[], int n){
+	int i, j;
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			cout<<vec[i].svec[j]<<"  ";
+		}
+		cout<<endl;
+	}
+}
+
+int obtSumaX(tElemento vec[], int n){
+	int i,s=0;
+	for(i=0;i<n;i++){
+		s=s+vec[i].svec[i];
+	}
+	return(s);
+}
+
+void ordenarAscendente(int vec[], int n){
+	int i,j,aux;
+	for(i=0;i<n;i++){
+		for(j=i+1;j<n;j++){
+			if(vec[i] > vec[j]){
+				aux=vec[i];
+				vec[i]=vec[j];
+				vec[j]=aux;
+			}
+		}
+	}
+}
+
+void ordenarSubVectores(tElemento vec[], int n){
+	int i;
+	for(i=0;i<n;i++){
+		ordenarAscendente(vec[i].svec,n);
+	}
+}
+
+int sumarMarcados(tElemento vec[], int n){
+	int i, j, s=0;
+	for(i=1;i<n;i++){
+		for(j=i;j<n;j++){
+			s=s+vec[i].svec[j];
+		}
+	}
+	return (s);
+}
+
+int sumarMarcados2(tElemento vec[], int n){
+	int i,j,s=0;
+	for(i=0;i<n-1;i++){
+		for(j=0;j<i+1;j++){
+			s=s+vec[i].svec[j];
+		}
+	}
+	return(s);
+}
+
+void main(){
+	int nroElem;
+	tElemento vect[MAX];
+	cout<<"Numero de elementos: ";
+	cin>>nroElem;
+	cout<<endl;
+	cargar(vect,nroElem);
+	mostrar(vect,nroElem);
+	//cout<<"\nLa suma es igual a: "<<obtSumaX(vect,nroElem);
+	//cout<<endl<<endl<<"Los subvectores ordenados son: "<<endl;
+	//ordenarSubVectores(vect,nroElem);
+	//mostrar(vect,nroElem);
+	cout<<endl<<"La suma de los vectores marcados es igual a: "<<sumarMarcados2(vect,nroElem);
+	getch();
+}
