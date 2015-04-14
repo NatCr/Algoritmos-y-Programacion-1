@@ -1,0 +1,98 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+
+#define FIL 15
+#define COL 35
+
+char pantalla[FIL][COL];
+
+
+void mostrarPantalla(){
+	int i,j;
+	for(i=0;i<FIL;i++){
+		for(j=0;j<COL;j++){
+			cout<<pantalla[i][j];
+		}
+		cout<<endl;
+	}
+}
+
+void limpiarPantalla(){
+	int i,j;
+	for(i=0;i<FIL;i++){
+		for(j=0;j<COL;j++){
+			pantalla[i][j]=' ';
+		}
+		cout<<endl;
+	}
+}
+
+
+
+void dibujarLineaHorizontal(int x1, int y1, int x2, int y2){
+	int i;
+	for(i=y1;i<y2;i++){
+		pantalla[x1][i]= char (196);
+	}
+}
+
+void dibujarLineaVertical(int x1, int y1, int x2, int y2){
+	int i;
+	for(i=x1;i<x2;i++){
+		pantalla[i][y1]= char (179);
+	}
+}
+
+void dibujarLineaHorizontal2(int x1, int y1, int x2, int y2){
+	int i;
+	for(i=y1;i<y2;i++){
+		pantalla[x1][i]= char (177);
+	}
+}
+
+void dibujarLineaVertical2(int x1, int y1, int x2, int y2){
+	int i;
+	for(i=x1;i<x2;i++){
+		pantalla[i][y1]= char (177);
+	}
+}
+
+void dibujarCaja(int x1, int y1, int x2, int y2){
+	dibujarLineaHorizontal(x1,y1,x1,y2);
+	dibujarLineaHorizontal(x2,y1,x2,y2);
+	dibujarLineaVertical(x1,y1,x2,y1);
+	dibujarLineaVertical(x1,y2,x2,y2);
+	pantalla[x1][y1]=char (218);
+	pantalla[x1][y2]=char (191);
+	pantalla[x2][y1]=char (192);
+	pantalla[x2][y2]=char (217);
+}
+
+void dibujarCaja3D(int x1, int y1, int x2, int y2){
+	dibujarLineaHorizontal(x1,y1,x1,y2);
+	dibujarLineaHorizontal2(x1-1,y1+1,x1-1,y2+1);
+	dibujarLineaHorizontal(x2,y1,x2,y2);
+	dibujarLineaVertical(x1,y1,x2,y1);
+	dibujarLineaVertical(x1,y2,x2,y2);
+	dibujarLineaVertical2(x1-1,y2+1,x2-1,y2+1);
+	pantalla[x1][y1]=char (218);
+	pantalla[x1][y2]=char (191);
+	pantalla[x2][y1]=char (192);
+	pantalla[x2][y2]=char (217);
+}
+
+
+void main(){
+	limpiarPantalla();
+	//dibujarLineaHorizontal(4,3,4,9);
+	//dibujarLineaHorizontal(8,3,8,9);
+	//dibujarLineaVertical(3,15,9,15);
+	//dibujarLineaVertical(3,20,9,20);
+	//dibujarCaja(3,5,10,15);
+	dibujarCaja3D(3,5,10,15);
+	dibujarCaja(12,3,14,18);
+	mostrarPantalla();
+	getch();
+}
+
