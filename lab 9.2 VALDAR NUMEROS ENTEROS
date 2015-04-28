@@ -15,6 +15,8 @@ int obtEntero(){
 		i=0;k=true;
 		if(cad[0]=='-'){
 			i++;
+			if(strlen(cad)==1)
+				k=false;
 		}
 	    while(i<strlen(cad)){
 		   if((cad[i]!='0') && (cad[i]!='1') && (cad[i]!='2') &&(cad[i]!='3') &&(cad[i]!='4') &&(cad[i]!='5') && (cad[i]!='6') &&(cad[i]!='7') &&(cad[i]!='8') &&(cad[i]!='9') )
