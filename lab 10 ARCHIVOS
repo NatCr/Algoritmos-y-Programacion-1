@@ -1,0 +1,98 @@
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+
+struct regAmigo{
+	char nombre [30];
+	int edad;
+	char sexo;
+};
+
+void crearArchivo(char nomArch[]){
+	FILE *ptr;
+	ptr = fopen(nomArch,"wb");
+	fclose(ptr);
+}
+
+void agregarAmigo(){
+	FILE *ptr;
+	regAmigo reg;
+	cout<<"Introducir Nombre: ";
+	do{
+		gets(reg.nombre);
+	}while(strlen(reg.nombre)==0);
+	do{
+	    cout<<"Introducir Edad: ";
+	    cin>>reg.edad;
+	}while(reg.edad <= 0 || reg.edad > 150);
+	do{
+		cout<<"Introducir Sexo [F/M]: ";
+	    cin>>reg.sexo;
+	}while((reg.sexo!='F')&&(reg.sexo!='M'));
+    ptr= fopen("amigos.dat","ab"); //abre para adicionar datos
+	fwrite(&reg,sizeof(reg),1,ptr); //escribe el registro en el archivo
+	fclose(ptr); //cierra el archivo
+}
+
+
+void listarArchivo(){
+	FILE *ptr;
+	regAmigo reg;
+	ptr= fopen("amigos.dat","rb"); //abre el archivo en modo lectura
+	if(ptr!=NULL){ //verifica si el archivo existe
+		cout<<endl<<"Los amigos en el archivo son: \n";
+		fread(&reg,sizeof(reg),1,ptr); //lee un registro desde el archivo
+		while(feof(ptr)==false){ //mientras no sea el final del archivo
+			cout<<"\n"<<reg.nombre<<"  "<<reg.edad<<"  "<<reg.sexo;
+			fread(&reg,sizeof(reg),1,ptr);//lee registro desde el archivo
+		}
+		fclose(ptr);
+	}else{
+		cout<<"Archivo No Existe!";
+	}
+}
+
+
+void promedioEdad(){
+	FILE *ptr;
+	regAmigo reg;
+	int s=0,c=0,p=0;
+	ptr=fopen("amigos.dat","rb");
+	if(ptr!=NULL){
+		fread(&reg,sizeof(reg),1,ptr);
+		while(feof(ptr)==false){
+			s=s+reg.edad;
+			fread(&reg,sizeof(reg),1,ptr);
+			c++;
+		}
+		cout<<"El promedio es igual a: "<<s/c;
+		fclose(ptr);
+	}else{
+		cout<<"Archivo No Existe!";
+	}
+}
+
+
+void main(){
+	int opcion;
+	do{
+		cout<<endl<<"\n\tMENU\n";
+		cout<<endl<<"1.- Crear Archivo.";
+		cout<<endl<<"2.- Adicionar Amigo.";
+		cout<<endl<<"3.- Listar/Mostrar Amigos.";
+		cout<<endl<<"4.- Mostrar Promedio de Edad.";
+		cout<<endl<<"0.- Salir.";
+		cout<<endl<<endl<<"Seleccionar Opcion: ";
+		cin>>opcion;
+		switch(opcion){
+		case 1:crearArchivo("amigos.dat");
+			   break;
+		case 2: agregarAmigo();
+				break;
+		case 3: listarArchivo();
+		        break;
+		case 4: promedioEdad();
+			break;
+		}
+	}while(opcion!=0);
+}
